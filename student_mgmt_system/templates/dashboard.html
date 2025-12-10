@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4">System Dashboard</h2>
+
+<div class="row mb-4">
+  <div class="col-md-3"><div class="card text-bg-primary shadow-sm"><div class="card-body">Students: {{ student_count }}</div></div></div>
+  <div class="col-md-3"><div class="card text-bg-success shadow-sm"><div class="card-body">Assignments: {{ assignment_count }}</div></div></div>
+  <div class="col-md-3"><div class="card text-bg-warning shadow-sm"><div class="card-body">Submissions: {{ submission_count }}</div></div></div>
+  <div class="col-md-3"><div class="card text-bg-info shadow-sm"><div class="card-body">Reminders: {{ reminder_count }}</div></div></div>
+</div>
+
+<table class="table table-bordered table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>ID</th><th>Student</th><th>Assignment</th><th>Grade</th><th>Status</th><th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for submission in submissions %}
+    <tr>
+      <td>{{ submission.id }}</td>
+      <td>{{ submission.student }}</td>
+      <td>{{ submission.assignment }}</td>
+      <td>{{ submission.grade }}</td>
+      <td>{{ submission.status }}</td>
+      <td>
+        <a href="{% url 'edit_submission' submission.id %}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{% url 'delete_submission' submission.id %}" class="btn btn-sm btn-danger">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

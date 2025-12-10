@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ view_title }} Submission{% endblock %}
+{% block content %}
+<h2>{{ view_title }} Submission</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">{{ view_title }}</button>
+  <a href="{% url 'submission_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

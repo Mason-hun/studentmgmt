@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ view_title }} Reminder{% endblock %}
+{% block content %}
+<h2>{{ view_title }} Reminder</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">{{ view_title }}</button>
+  <a href="{% url 'reminder_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}
